@@ -3,7 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>Nakul Daf | Data Engineer Portfolio</title>
+    <meta name="title" content="Nakul Daf | Data Engineer Portfolio">
+    <meta name="description" content="Data Engineer with 4+ years of experience architecting scalable, enterprise-grade cloud data platforms using Azure Databricks, PySpark, and Snowflake.">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nakul-daf.github.io/">
+    <meta property="og:title" content="Nakul Daf | Data Engineer Portfolio">
+    <meta property="og:description" content="Data Engineer with 4+ years of experience architecting scalable, enterprise-grade cloud data platforms using Azure Databricks, PySpark, and Snowflake.">
+    <meta property="og:image" content="https://nakul-daf.github.io/images/preview.jpg">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -37,8 +47,9 @@
             animation: gradient-shift 15s ease infinite;
         }
 
+        /* Darkened gradient for better readability/accessibility */
         .text-moving-gradient {
-            background: linear-gradient(to right, #2563eb, #06b6d4, #2563eb);
+            background: linear-gradient(to right, #1d4ed8, #0891b2, #1d4ed8);
             background-size: 200% auto;
             color: transparent;
             -webkit-background-clip: text;
@@ -79,22 +90,25 @@
         ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 5px; }
         ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
         
-        /* Interactive Mouse Glow Element */
+        /* GPU-Accelerated Mouse Glow Element */
         .mouse-glow {
             pointer-events: none;
             position: fixed;
+            top: 0; left: 0;
             width: 400px;
             height: 400px;
             background: radial-gradient(circle, rgba(59,130,246,0.08) 0%, rgba(0,0,0,0) 60%);
             border-radius: 50%;
-            transform: translate(-50%, -50%);
+            /* Using transform for rendering creates a massive performance boost */
+            transform: translate3d(-50%, -50%, 0);
             z-index: 9999;
             transition: opacity 0.3s ease;
             mix-blend-mode: multiply;
+            will-change: transform;
         }
         
         .typed-cursor {
-            color: #2563eb;
+            color: #1d4ed8;
             font-weight: 800;
         }
     </style>
@@ -103,7 +117,7 @@
 
     <div id="scroll-progress" class="fixed top-0 left-0 h-1 bg-gradient-to-r from-blue-600 to-cyan-400 z-[100] w-0 transition-all duration-75 shadow-[0_0_10px_rgba(6,182,212,0.8)]"></div>
 
-    <div class="mouse-glow hidden md:block" id="mouse-glow"></div>
+    <div class="mouse-glow hidden lg:block" id="mouse-glow"></div>
 
     <nav class="glass shadow-sm sticky top-0 z-50 transition-all duration-300 border-b border-slate-100" id="navbar">
         <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center transition-all duration-300" id="nav-inner">
@@ -123,7 +137,7 @@
 
             <div class="md:hidden flex items-center gap-5">
                 <a href="mailto:nakuldaf@gmail.com" class="text-blue-600 text-xl hover:scale-110 transition-transform"><i class="fas fa-envelope"></i></a>
-                <button id="mobile-menu-btn" class="text-slate-700 text-2xl focus:outline-none hover:text-blue-600 transition-colors">
+                <button id="mobile-menu-btn" class="text-slate-700 text-2xl focus:outline-none hover:text-blue-600 transition-colors" aria-label="Toggle Menu">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
@@ -142,7 +156,7 @@
         <div class="max-w-6xl mx-auto px-4 py-24 flex flex-col-reverse md:flex-row items-center gap-12 min-h-[85vh] relative z-10">
             <div class="flex-1 space-y-8" data-aos="fade-right" data-aos-duration="1200">
                 <div class="inline-block px-5 py-2 rounded-full bg-white/80 border border-blue-200 text-blue-700 font-bold text-sm tracking-wide uppercase shadow-sm transform hover:scale-105 transition-transform cursor-default backdrop-blur-sm">
-                    <i class="fas fa-database mr-2 animate-pulse"></i> Data Engineer | ~4 Years Exp
+                    <i class="fas fa-database mr-2 animate-pulse"></i> Data Engineer | 4+ Years Exp
                 </div>
                 
                 <div class="min-h-[160px] md:min-h-[180px] flex flex-col justify-center">
@@ -155,7 +169,7 @@
                 </div>
 
                 <p class="text-lg text-slate-600 leading-relaxed max-w-2xl font-medium">
-                    Data Engineer with around 4 years of experience building large-scale data pipelines on Azure Databricks, PySpark, and Delta Lake. Adept at designing scalable, reliable pipelines and translating complex data requirements into clean, maintainable solutions.
+                    Data Engineer with 4+ years of experience building large-scale data pipelines on Azure Databricks, PySpark, and Delta Lake. Adept at designing scalable, reliable pipelines and translating complex data requirements into clean, maintainable solutions.
                 </p>
                 <div class="flex flex-wrap gap-5 pt-4">
                     <a href="mailto:nakuldaf@gmail.com" class="btn-shimmer animate-glow bg-blue-600 text-white px-8 py-4 rounded-xl font-bold hover:bg-blue-700 transition-all duration-300 shadow-[0_0_20px_rgba(37,99,235,0.4)] flex items-center gap-3 transform hover:-translate-y-2">
@@ -167,14 +181,14 @@
                 </div>
             </div>
             <div class="flex-1 flex justify-center relative" data-aos="zoom-in" data-aos-duration="1200">
-                <div class="absolute inset-0 bg-blue-400/20 rounded-full blur-[80px] transform scale-110 -z-10 animate-pulse"></div>
+                <div class="absolute inset-0 bg-blue-400/10 rounded-full blur-[100px] transform scale-110 -z-10 animate-pulse"></div>
                 <div data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.3" class="rounded-full rounded-full w-80 h-80 md:w-96 md:h-96 transform-style-3d cursor-pointer">
                     <img src="images/Media%20(3).png" alt="Nakul Daf" class="rounded-full w-full h-full object-cover border-[10px] border-white shadow-2xl animate-float relative z-10">
                 </div>
-                <div class="absolute top-8 right-8 bg-white p-4 rounded-2xl shadow-xl animate-float-delayed z-20 text-blue-500 text-3xl border border-slate-100 pointer-events-none">
+                <div class="absolute top-8 right-8 bg-white/90 backdrop-blur-sm p-4 rounded-2xl shadow-xl animate-float-delayed z-20 text-blue-500 text-3xl border border-slate-100 pointer-events-none">
                     <i class="fas fa-cloud"></i>
                 </div>
-                <div class="absolute bottom-10 left-4 bg-white p-4 rounded-2xl shadow-xl animate-float z-20 text-yellow-500 text-3xl border border-slate-100 pointer-events-none">
+                <div class="absolute bottom-10 left-4 bg-white/90 backdrop-blur-sm p-4 rounded-2xl shadow-xl animate-float z-20 text-yellow-500 text-3xl border border-slate-100 pointer-events-none">
                     <i class="fas fa-bolt"></i>
                 </div>
             </div>
@@ -361,12 +375,12 @@
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/30 to-transparent z-10"></div>
                         <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" alt="Data Analytics Dashboard" class="w-full h-full object-cover group-hover:scale-110 group-hover:-rotate-1 transition-transform duration-700">
                         <div class="absolute bottom-5 left-8 z-20">
-                            <span class="bg-blue-600/90 backdrop-blur-md text-white text-xs font-bold px-4 py-2 rounded-full uppercase tracking-wider shadow-lg border border-blue-400/30">Retail</span>
+                            <span class="bg-blue-600/90 backdrop-blur-md text-white text-xs font-bold px-4 py-2 rounded-full uppercase tracking-wider shadow-lg border border-blue-400/30">eCommerce</span>
                         </div>
                     </div>
                     <div class="p-8 flex-1 flex flex-col relative z-20 bg-slate-800">
                         <div class="mb-auto">
-                            <h4 class="text-2xl font-bold mb-4 text-white group-hover:text-blue-400 transition-colors">RFM Analytics for E-commerce</h4>
+                            <h4 class="text-2xl font-bold mb-4 text-white group-hover:text-blue-400 transition-colors">RFM Analytics for eCommerce</h4>
                             <p class="text-slate-400 mb-6 leading-relaxed text-sm">Delivered multi-format ingestion pipelines (CSV, JSON, API, RDBMS) into Azure Blob Storage and automated daily data loads into Snowflake. Optimized schemas for RFM analytics to maximize marketing campaign ROI.</p>
                         </div>
                         <div class="flex flex-wrap gap-2 text-xs font-bold text-slate-300 mt-2">
@@ -447,7 +461,7 @@
         <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-16 items-center relative z-10">
             <div data-aos="fade-right">
                 <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-6 tracking-tight text-moving-gradient inline-block pb-2">Let's Build Something Great.</h2>
-                <p class="text-slate-400 mb-10 max-w-md text-lg leading-relaxed">I am currently open for new opportunities. Whether you have a question or just want to say hi, I'll try my best to get back to you!</p>
+                <p class="text-slate-400 mb-10 max-w-md text-lg leading-relaxed">I am currently open to new opportunities. Whether you have a question or just want to say hi, I'll try my best to get back to you!</p>
                 <div class="space-y-6">
                     <a href="mailto:nakuldaf@gmail.com" class="inline-flex items-center gap-5 hover:text-blue-400 transition-all duration-300 group">
                         <div class="w-14 h-14 rounded-2xl bg-slate-800 border border-slate-700 flex items-center justify-center text-blue-500 group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-500 transition-all shadow-lg transform group-hover:scale-110">
@@ -523,25 +537,17 @@
             document.getElementById('scroll-progress').style.width = scrolled + '%';
         });
 
-        // 4. Interactive Mouse Glow Follower
+        // 4. Optimized GPU-Accelerated Mouse Glow
         const cursorGlow = document.getElementById('mouse-glow');
-        let mouseX = 0, mouseY = 0;
-        let glowX = 0, glowY = 0;
         
-        function animateGlow() {
-            let distX = mouseX - glowX;
-            let distY = mouseY - glowY;
-            glowX = glowX + (distX * 0.15);
-            glowY = glowY + (distY * 0.15);
-            cursorGlow.style.left = glowX + 'px';
-            cursorGlow.style.top = glowY + 'px';
-            requestAnimationFrame(animateGlow);
-        }
-        animateGlow();
-
+        // Use translate3d instead of top/left for massive performance boost
         document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
+            // Check if element is hidden (mobile) to save battery
+            if (window.getComputedStyle(cursorGlow).display !== 'none') {
+                const x = e.clientX;
+                const y = e.clientY;
+                cursorGlow.style.transform = `translate3d(calc(${x}px - 50%), calc(${y}px - 50%), 0)`;
+            }
         });
 
         document.addEventListener('mouseleave', () => { cursorGlow.style.opacity = '0'; });
