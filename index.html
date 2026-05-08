@@ -23,34 +23,56 @@
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
-        .animate-float {
-            animation: float 6s ease-in-out infinite;
+        @keyframes shimmer {
+            100% { left: 125%; }
         }
-        .animate-float-delayed {
-            animation: float 7s ease-in-out infinite;
-            animation-delay: 1.5s;
-        }
-        .animate-glow {
-            animation: pulse-glow 3s infinite;
-        }
+        
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        .animate-float-delayed { animation: float 7s ease-in-out infinite; animation-delay: 1.5s; }
+        .animate-glow { animation: pulse-glow 3s infinite; }
+        
         .bg-moving-gradient {
             background: linear-gradient(-45deg, #f8fafc, #eff6ff, #f0fdfa, #f8fafc);
             background-size: 400% 400%;
             animation: gradient-shift 15s ease infinite;
         }
-        .skill-badge {
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+        .text-moving-gradient {
+            background: linear-gradient(to right, #2563eb, #06b6d4, #2563eb);
+            background-size: 200% auto;
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: gradient-shift 4s linear infinite;
         }
+
+        .btn-shimmer {
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-shimmer::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 50%; height: 100%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
+            transform: skewX(-20deg);
+            animation: shimmer 3s infinite;
+        }
+
+        .skill-badge { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
         .skill-badge:hover {
             transform: translateY(-8px) scale(1.08);
             box-shadow: 0 20px 25px -5px rgba(59, 130, 246, 0.25);
             border-color: #3b82f6;
             background-color: #ffffff;
         }
+        
         .glass {
             background: rgba(255, 255, 255, 0.90);
             backdrop-filter: blur(12px);
         }
+        
         /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 10px; }
         ::-webkit-scrollbar-track { background: #f1f5f9; }
@@ -71,7 +93,6 @@
             mix-blend-mode: multiply;
         }
         
-        /* Typed JS cursor color fix */
         .typed-cursor {
             color: #2563eb;
             font-weight: 800;
@@ -80,7 +101,7 @@
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-blue-300 overflow-x-hidden relative">
 
-    <div id="scroll-progress" class="fixed top-0 left-0 h-1 bg-gradient-to-r from-blue-600 to-cyan-400 z-[100] w-0 transition-all duration-75"></div>
+    <div id="scroll-progress" class="fixed top-0 left-0 h-1 bg-gradient-to-r from-blue-600 to-cyan-400 z-[100] w-0 transition-all duration-75 shadow-[0_0_10px_rgba(6,182,212,0.8)]"></div>
 
     <div class="mouse-glow hidden md:block" id="mouse-glow"></div>
 
@@ -106,21 +127,19 @@
         <div class="max-w-6xl mx-auto px-4 py-24 flex flex-col-reverse md:flex-row items-center gap-12 min-h-[85vh] relative z-10">
             <div class="flex-1 space-y-8" data-aos="fade-right" data-aos-duration="1200">
                 <div class="inline-block px-5 py-2 rounded-full bg-white/80 border border-blue-200 text-blue-700 font-bold text-sm tracking-wide uppercase shadow-sm transform hover:scale-105 transition-transform cursor-default backdrop-blur-sm">
-                    <i class="fas fa-database mr-2"></i> Data Engineer | ~4 Years Exp
-                </div>
+                    <i class="fas fa-database mr-2 animate-pulse"></i> Data Engineer | ~4 Years Exp </div>
                 <h2 class="text-5xl md:text-7xl font-extrabold leading-tight text-slate-900 tracking-tight min-h-[140px] md:min-h-[180px]">
                     Architecting scalable <br>
-                    <span id="typed-text" class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-blue-500 to-cyan-400 drop-shadow-sm"></span>
+                    <span id="typed-text" class="text-moving-gradient drop-shadow-sm"></span>
                 </h2>
                 <p class="text-lg text-slate-600 leading-relaxed max-w-2xl font-medium">
-                    Data Engineer with around 4 years of experience building large-scale data pipelines on Azure Databricks, PySpark, and Delta Lake. Adept at designing scalable, reliable pipelines and translating complex data requirements into clean, maintainable solutions.
-                </p>
+                    Data Engineer with around 4 years of experience building large-scale data pipelines on Azure Databricks, PySpark, and Delta Lake. Adept at designing scalable, reliable pipelines and translating complex data requirements into clean, maintainable solutions. </p>
                 <div class="flex flex-wrap gap-5 pt-4">
-                    <a href="mailto:nakuldaf@gmail.com" class="animate-glow bg-blue-600 text-white px-8 py-4 rounded-xl font-bold hover:bg-blue-700 transition-all duration-300 shadow-[0_0_20px_rgba(37,99,235,0.4)] flex items-center gap-3 transform hover:-translate-y-2">
+                    <a href="mailto:nakuldaf@gmail.com" class="btn-shimmer animate-glow bg-blue-600 text-white px-8 py-4 rounded-xl font-bold hover:bg-blue-700 transition-all duration-300 shadow-[0_0_20px_rgba(37,99,235,0.4)] flex items-center gap-3 transform hover:-translate-y-2">
                         <i class="fas fa-paper-plane text-lg"></i> Contact Me
                     </a>
                     <a href="https://www.linkedin.com/in/nakul-daf/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3Br0Xd0e6JSqmkBuOKz0fvZg%3D%3D" target="_blank" class="bg-white/90 backdrop-blur-sm text-slate-700 border-2 border-slate-200 px-8 py-4 rounded-xl font-bold hover:border-blue-600 hover:text-blue-600 hover:bg-white transition-all duration-300 flex items-center gap-3 transform hover:-translate-y-2 hover:shadow-[0_10px_20px_rgba(0,0,0,0.05)]">
-                        <i class="fab fa-linkedin text-xl"></i> LinkedIn
+                        <i class="fab fa-linkedin text-xl group-hover:rotate-12 transition-transform"></i> LinkedIn
                     </a>
                 </div>
             </div>
@@ -146,30 +165,22 @@
         <div class="max-w-6xl mx-auto px-4 text-center relative z-10">
             <p class="text-sm font-bold text-slate-400 uppercase tracking-widest mb-12" data-aos="fade-up">Core Technologies</p>
             <div class="flex flex-wrap justify-center gap-6">
-                <span data-aos="zoom-in-up" data-aos-delay="50" class="skill-badge px-7 py-4 bg-slate-50 border border-slate-200 rounded-xl font-bold text-slate-700 cursor-default flex items-center gap-3">
-                    <i class="fas fa-cloud text-blue-600 text-xl"></i> Azure Databricks
-                </span>
-                <span data-aos="zoom-in-up" data-aos-delay="100" class="skill-badge px-7 py-4 bg-slate-50 border border-slate-200 rounded-xl font-bold text-slate-700 cursor-default flex items-center gap-3">
-                    <i class="fab fa-python text-blue-500 text-xl"></i> Python
-                </span>
-                <span data-aos="zoom-in-up" data-aos-delay="150" class="skill-badge px-7 py-4 bg-slate-50 border border-slate-200 rounded-xl font-bold text-slate-700 cursor-default flex items-center gap-3">
-                    <i class="fas fa-database text-indigo-400 text-xl"></i> SQL
-                </span>
-                <span data-aos="zoom-in-up" data-aos-delay="200" class="skill-badge px-7 py-4 bg-slate-50 border border-slate-200 rounded-xl font-bold text-slate-700 cursor-default flex items-center gap-3">
-                    <i class="fas fa-bolt text-yellow-500 text-xl"></i> PySpark
-                </span>
-                <span data-aos="zoom-in-up" data-aos-delay="250" class="skill-badge px-7 py-4 bg-slate-50 border border-slate-200 rounded-xl font-bold text-slate-700 cursor-default flex items-center gap-3">
-                    <i class="far fa-snowflake text-cyan-500 text-xl"></i> Snowflake
-                </span>
-                <span data-aos="zoom-in-up" data-aos-delay="300" class="skill-badge px-7 py-4 bg-slate-50 border border-slate-200 rounded-xl font-bold text-slate-700 cursor-default flex items-center gap-3">
-                    <i class="fas fa-water text-blue-400 text-xl"></i> Delta Lake
-                </span>
-                <span data-aos="zoom-in-up" data-aos-delay="350" class="skill-badge px-7 py-4 bg-slate-50 border border-slate-200 rounded-xl font-bold text-slate-700 cursor-default flex items-center gap-3">
-                    <i class="fas fa-network-wired text-indigo-500 text-xl"></i> Azure Data Factory
-                </span>
-                <span data-aos="zoom-in-up" data-aos-delay="400" class="skill-badge px-7 py-4 bg-slate-50 border border-slate-200 rounded-xl font-bold text-slate-700 cursor-default flex items-center gap-3">
-                    <i class="fas fa-wind text-teal-500 text-xl"></i> Apache Airflow
-                </span>
+                <span data-aos="zoom-in-up" data-aos-delay="50" class="skill-badge px-7 py-4 bg-slate-50 border border-slate-200 rounded-xl font-bold text-slate-700 cursor-default flex items-center gap-3 overflow-hidden relative">
+                    <i class="fas fa-cloud text-blue-600 text-xl"></i> Azure Databricks </span>
+                <span data-aos="zoom-in-up" data-aos-delay="100" class="skill-badge px-7 py-4 bg-slate-50 border border-slate-200 rounded-xl font-bold text-slate-700 cursor-default flex items-center gap-3 overflow-hidden relative">
+                    <i class="fab fa-python text-blue-500 text-xl"></i> Python </span>
+                <span data-aos="zoom-in-up" data-aos-delay="150" class="skill-badge px-7 py-4 bg-slate-50 border border-slate-200 rounded-xl font-bold text-slate-700 cursor-default flex items-center gap-3 overflow-hidden relative">
+                    <i class="fas fa-database text-indigo-400 text-xl"></i> SQL </span>
+                <span data-aos="zoom-in-up" data-aos-delay="200" class="skill-badge px-7 py-4 bg-slate-50 border border-slate-200 rounded-xl font-bold text-slate-700 cursor-default flex items-center gap-3 overflow-hidden relative">
+                    <i class="fas fa-bolt text-yellow-500 text-xl"></i> PySpark </span>
+                <span data-aos="zoom-in-up" data-aos-delay="250" class="skill-badge px-7 py-4 bg-slate-50 border border-slate-200 rounded-xl font-bold text-slate-700 cursor-default flex items-center gap-3 overflow-hidden relative">
+                    <i class="far fa-snowflake text-cyan-500 text-xl"></i> Snowflake </span>
+                <span data-aos="zoom-in-up" data-aos-delay="300" class="skill-badge px-7 py-4 bg-slate-50 border border-slate-200 rounded-xl font-bold text-slate-700 cursor-default flex items-center gap-3 overflow-hidden relative">
+                    <i class="fas fa-water text-blue-400 text-xl"></i> Delta Lake </span>
+                <span data-aos="zoom-in-up" data-aos-delay="350" class="skill-badge px-7 py-4 bg-slate-50 border border-slate-200 rounded-xl font-bold text-slate-700 cursor-default flex items-center gap-3 overflow-hidden relative">
+                    <i class="fas fa-network-wired text-indigo-500 text-xl"></i> Azure Data Factory </span>
+                <span data-aos="zoom-in-up" data-aos-delay="400" class="skill-badge px-7 py-4 bg-slate-50 border border-slate-200 rounded-xl font-bold text-slate-700 cursor-default flex items-center gap-3 overflow-hidden relative">
+                    <i class="fas fa-wind text-teal-500 text-xl"></i> Apache Airflow </span>
             </div>
         </div>
     </section>
@@ -185,19 +196,29 @@
             
             <div class="space-y-12 border-l-2 border-blue-200 pl-8 ml-6 relative">
                 <div class="relative group" data-aos="fade-up" data-aos-delay="100">
-                    <div class="absolute w-5 h-5 bg-blue-600 rounded-full -left-[43px] top-1.5 ring-4 ring-white shadow-md group-hover:scale-150 transition-transform duration-300"></div>
-                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-xl hover:border-blue-200 transition-all duration-300 transform group-hover:-translate-y-2 cursor-default">
-                        <h4 class="text-xl font-bold text-slate-900">Data Engineer</h4>
-                        <p class="text-blue-600 font-bold text-sm mb-4">Enterprise Technology Consultancy | Sept 2024 - Present</p>
-                        <p class="text-slate-600 leading-relaxed">Architected a metadata-driven ETL framework in ADF to ingest healthcare data (HCHB, Athena, UKG) into Snowflake. Engineered dynamic extraction logic for SQL Server, REST APIs, and SFTP sources.</p>
+                    <div class="absolute w-5 h-5 bg-blue-400 rounded-full -left-[43px] top-1.5 animate-ping opacity-75"></div>
+                    <div class="absolute w-5 h-5 bg-blue-600 rounded-full -left-[43px] top-1.5 ring-4 ring-white shadow-md group-hover:scale-125 transition-transform duration-300 z-10"></div>
+                    
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-xl hover:border-blue-200 transition-all duration-300 transform group-hover:-translate-y-2 cursor-default relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-blue-50 rounded-bl-full -mr-16 -mt-16 opacity-50 transition-transform group-hover:scale-150 duration-500 z-0"></div>
+                        <div class="relative z-10">
+                            <h4 class="text-xl font-bold text-slate-900">Data Engineer </h4>
+                            <p class="text-blue-600 font-bold text-sm mb-4">Enterprise Technology Consultancy | Sept 2024 - Present </p>
+                            <p class="text-slate-600 leading-relaxed">Architected a metadata-driven ETL framework in ADF to ingest healthcare data (HCHB, Athena, UKG) into Snowflake. Engineered dynamic extraction logic for SQL Server, REST APIs, and SFTP sources. </p>
+                        </div>
                     </div>
                 </div>
                 <div class="relative group" data-aos="fade-up" data-aos-delay="200">
-                    <div class="absolute w-5 h-5 bg-slate-300 rounded-full -left-[43px] top-1.5 ring-4 ring-white shadow-md group-hover:bg-blue-400 group-hover:scale-150 transition-all duration-300"></div>
-                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-xl hover:border-blue-200 transition-all duration-300 transform group-hover:-translate-y-2 cursor-default">
-                        <h4 class="text-xl font-bold text-slate-900">Cloud Data Engineer</h4>
-                        <p class="text-slate-500 font-bold text-sm mb-4">Software Development Agency | Aug 2022 - Sept 2024</p>
-                        <p class="text-slate-600 leading-relaxed">Delivered multi-format ingestion pipelines into Azure Blob Storage with automated loads into Snowflake. Designed end-to-end fraud detection pipelines using Azure Databricks and PySpark.</p>
+                    <div class="absolute w-5 h-5 bg-slate-400 rounded-full -left-[43px] top-1.5 animate-ping opacity-50"></div>
+                    <div class="absolute w-5 h-5 bg-slate-400 rounded-full -left-[43px] top-1.5 ring-4 ring-white shadow-md group-hover:bg-blue-400 group-hover:scale-125 transition-all duration-300 z-10"></div>
+                    
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-xl hover:border-blue-200 transition-all duration-300 transform group-hover:-translate-y-2 cursor-default relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-slate-50 rounded-bl-full -mr-16 -mt-16 opacity-50 transition-transform group-hover:scale-150 group-hover:bg-blue-50 duration-500 z-0"></div>
+                        <div class="relative z-10">
+                            <h4 class="text-xl font-bold text-slate-900">Cloud Data Engineer</h4>
+                            <p class="text-slate-500 font-bold text-sm mb-4">Software Development Agency | Aug 2022 - Sept 2024</p>
+                            <p class="text-slate-600 leading-relaxed">Delivered multi-format ingestion pipelines into Azure Blob Storage with automated loads into Snowflake. Designed end-to-end fraud detection pipelines using Azure Databricks and PySpark. </p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -211,12 +232,12 @@
             <div data-tilt data-tilt-max="3" data-tilt-glare="true" data-tilt-max-glare="0.1" class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-xl hover:border-blue-200 transition-all duration-300 group cursor-pointer" data-aos="fade-up">
                 <div class="flex items-start gap-5">
                     <div class="bg-slate-50 text-slate-400 p-4 rounded-xl group-hover:bg-blue-50 group-hover:text-blue-500 transition-colors">
-                        <i class="fas fa-university text-3xl"></i>
+                        <i class="fas fa-university text-3xl group-hover:scale-110 transition-transform"></i>
                     </div>
                     <div>
                         <h4 class="font-bold text-xl text-slate-900 mb-1">Bachelor of Engineering</h4>
                         <p class="text-blue-600 font-semibold text-sm mb-2">Computer Science and Engineering</p>
-                        <p class="text-slate-600 font-medium">Sant Gadge Baba Amravati University, Maharashtra</p>
+                        <p class="text-slate-600 font-medium">Sant Gadge Baba Amravati University, Maharashtra </p>
                     </div>
                 </div>
             </div>
@@ -232,33 +253,33 @@
             <div class="grid gap-6">
                 <div data-tilt data-tilt-max="5" data-tilt-scale="1.02" data-aos="fade-left" data-aos-delay="100" class="flex items-center gap-6 bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:shadow-[0_0_20px_rgba(59,130,246,0.15)] hover:border-blue-300 transition-all duration-300 group cursor-default">
                     <div class="bg-blue-50 min-w-[4rem] h-16 rounded-xl flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300 text-blue-600 shadow-inner">
-                        <i class="fas fa-certificate text-2xl"></i>
+                        <i class="fas fa-certificate text-2xl group-hover:rotate-[360deg] transition-transform duration-700"></i>
                     </div>
-                    <h4 class="font-bold text-lg text-slate-800 leading-tight">Microsoft Certified: Azure Data Engineer Associate (DP-203)</h4>
+                    <h4 class="font-bold text-lg text-slate-800 leading-tight">Microsoft Certified: Azure Data Engineer Associate (DP-203) </h4>
                 </div>
                 <div data-tilt data-tilt-max="5" data-tilt-scale="1.02" data-aos="fade-left" data-aos-delay="150" class="flex items-center gap-6 bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:shadow-[0_0_20px_rgba(59,130,246,0.15)] hover:border-blue-300 transition-all duration-300 group cursor-default">
                     <div class="bg-blue-50 min-w-[4rem] h-16 rounded-xl flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300 text-blue-600 shadow-inner">
-                        <i class="fas fa-certificate text-2xl"></i>
+                        <i class="fas fa-certificate text-2xl group-hover:rotate-[360deg] transition-transform duration-700"></i>
                     </div>
                     <h4 class="font-bold text-lg text-slate-800 leading-tight">Microsoft Certified: Fabric Data Engineer Associate (DP-700)</h4>
                 </div>
                 <div data-tilt data-tilt-max="5" data-tilt-scale="1.02" data-aos="fade-left" data-aos-delay="200" class="flex items-center gap-6 bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:shadow-[0_0_20px_rgba(59,130,246,0.15)] hover:border-blue-300 transition-all duration-300 group cursor-default">
                     <div class="bg-blue-50 min-w-[4rem] h-16 rounded-xl flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300 text-blue-600 shadow-inner">
-                        <i class="fas fa-certificate text-2xl"></i>
+                        <i class="fas fa-certificate text-2xl group-hover:rotate-[360deg] transition-transform duration-700"></i>
                     </div>
-                    <h4 class="font-bold text-lg text-slate-800 leading-tight">Google Cloud Certified: Professional Data Engineer</h4>
+                    <h4 class="font-bold text-lg text-slate-800 leading-tight">Google Cloud Certified: Professional Data Engineer </h4>
                 </div>
                 <div data-tilt data-tilt-max="5" data-tilt-scale="1.02" data-aos="fade-left" data-aos-delay="250" class="flex items-center gap-6 bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:shadow-[0_0_20px_rgba(59,130,246,0.15)] hover:border-blue-300 transition-all duration-300 group cursor-default">
                     <div class="bg-blue-50 min-w-[4rem] h-16 rounded-xl flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300 text-blue-600 shadow-inner">
-                        <i class="fas fa-certificate text-2xl"></i>
+                        <i class="fas fa-certificate text-2xl group-hover:rotate-[360deg] transition-transform duration-700"></i>
                     </div>
-                    <h4 class="font-bold text-lg text-slate-800 leading-tight">Databricks Certified Data Engineer Associate</h4>
+                    <h4 class="font-bold text-lg text-slate-800 leading-tight">Databricks Certified Data Engineer Associate </h4>
                 </div>
                 <div data-tilt data-tilt-max="5" data-tilt-scale="1.02" data-aos="fade-left" data-aos-delay="300" class="flex items-center gap-6 bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:shadow-[0_0_20px_rgba(59,130,246,0.15)] hover:border-blue-300 transition-all duration-300 group cursor-default">
                     <div class="bg-blue-50 min-w-[4rem] h-16 rounded-xl flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300 text-blue-600 shadow-inner">
-                        <i class="fas fa-certificate text-2xl"></i>
+                        <i class="fas fa-certificate text-2xl group-hover:rotate-[360deg] transition-transform duration-700"></i>
                     </div>
-                    <h4 class="font-bold text-lg text-slate-800 leading-tight">SnowPro Core Certified</h4>
+                    <h4 class="font-bold text-lg text-slate-800 leading-tight">SnowPro Core Certified </h4>
                 </div>
             </div>
         </div>
@@ -273,24 +294,23 @@
 
         <div class="max-w-6xl mx-auto px-4 relative z-10">
             <div class="text-center max-w-2xl mx-auto mb-24" data-aos="fade-up">
-                <h3 class="text-4xl md:text-5xl font-extrabold mb-6 text-white tracking-tight">Featured Projects</h3>
+                <h3 class="text-4xl md:text-5xl font-extrabold mb-6 text-moving-gradient tracking-tight inline-block">Featured Projects</h3>
                 <p class="text-slate-400 text-lg">A selection of enterprise-grade data platforms and pipelines I have architected across various industries.</p>
             </div>
             
             <div class="grid md:grid-cols-2 gap-12">
                 
-                <div data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.2" data-aos="zoom-in-up" data-aos-delay="100" class="bg-slate-800 rounded-2xl overflow-hidden shadow-2xl hover:shadow-[0_0_40px_rgba(59,130,246,0.25)] transition-shadow duration-500 group flex flex-col border border-slate-700 hover:border-blue-500 cursor-pointer">
+                <div data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.2" data-aos="zoom-in-up" data-aos-delay="100" class="bg-slate-800 rounded-2xl overflow-hidden shadow-2xl hover:shadow-[0_0_40px_rgba(59,130,246,0.25)] transition-shadow duration-500 group flex flex-col border border-slate-700 hover:border-blue-500 cursor-pointer relative">
                     <div class="h-72 overflow-hidden relative">
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/30 to-transparent z-10"></div>
                         <img src="https://images.unsplash.com/photo-1540962351504-03099e0a754b?auto=format&fit=crop&w=800&q=80" alt="Private Jet Aviation" class="w-full h-full object-cover group-hover:scale-110 group-hover:rotate-1 transition-transform duration-700">
                         <div class="absolute bottom-5 left-8 z-20">
-                            <span class="bg-blue-600/90 backdrop-blur-md text-white text-xs font-bold px-4 py-2 rounded-full uppercase tracking-wider shadow-lg border border-blue-400/30">Aviation</span>
-                        </div>
+                            <span class="bg-blue-600/90 backdrop-blur-md text-white text-xs font-bold px-4 py-2 rounded-full uppercase tracking-wider shadow-lg border border-blue-400/30">Aviation</span> </div>
                     </div>
                     <div class="p-8 flex-1 flex flex-col relative z-20 bg-slate-800">
                         <div class="mb-auto">
-                            <h4 class="text-2xl font-bold mb-4 text-white group-hover:text-blue-400 transition-colors">Aviation Data Platform</h4>
-                            <p class="text-slate-400 mb-6 leading-relaxed">Designed Azure Databricks pipelines using PySpark and Delta Lake to transform aviation data across Bronze-Silver layers for 20+ schemas with Unity Catalog governance. Automated job orchestration via Databricks Workflows and Apache Airflow.</p>
+                            <h4 class="text-2xl font-bold mb-4 text-white group-hover:text-blue-400 transition-colors">Aviation Data Platform </h4>
+                            <p class="text-slate-400 mb-6 leading-relaxed">Designed Azure Databricks pipelines using PySpark and Delta Lake to transform aviation data across Bronze-Silver layers for 20+ schemas with Unity Catalog governance. Automated job orchestration via Databricks Workflows and Apache Airflow. </p>
                         </div>
                         <div class="flex flex-wrap gap-2 text-xs font-bold text-slate-300 mt-4 border-t border-slate-700 pt-6">
                             <span class="bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-700 transition-colors group-hover:border-blue-500/50">Databricks</span>
@@ -300,7 +320,7 @@
                     </div>
                 </div>
 
-                <div data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.2" data-aos="zoom-in-up" data-aos-delay="200" class="bg-slate-800 rounded-2xl overflow-hidden shadow-2xl hover:shadow-[0_0_40px_rgba(59,130,246,0.25)] transition-shadow duration-500 group flex flex-col border border-slate-700 hover:border-blue-500 cursor-pointer">
+                <div data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.2" data-aos="zoom-in-up" data-aos-delay="200" class="bg-slate-800 rounded-2xl overflow-hidden shadow-2xl hover:shadow-[0_0_40px_rgba(59,130,246,0.25)] transition-shadow duration-500 group flex flex-col border border-slate-700 hover:border-blue-500 cursor-pointer relative">
                     <div class="h-72 overflow-hidden relative">
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/30 to-transparent z-10"></div>
                         <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" alt="Data Analytics Dashboard" class="w-full h-full object-cover group-hover:scale-110 group-hover:-rotate-1 transition-transform duration-700">
@@ -310,8 +330,8 @@
                     </div>
                     <div class="p-8 flex-1 flex flex-col relative z-20 bg-slate-800">
                         <div class="mb-auto">
-                            <h4 class="text-2xl font-bold mb-4 text-white group-hover:text-blue-400 transition-colors">RFM Analytics for E-commerce</h4>
-                            <p class="text-slate-400 mb-6 leading-relaxed">Delivered multi-format ingestion pipelines (CSV, JSON, API, RDBMS) into Azure Blob Storage and automated daily data loads into Snowflake. Optimized schemas for RFM analytics to maximize marketing campaign ROI.</p>
+                            <h4 class="text-2xl font-bold mb-4 text-white group-hover:text-blue-400 transition-colors">RFM Analytics for E-commerce </h4>
+                            <p class="text-slate-400 mb-6 leading-relaxed">Delivered multi-format ingestion pipelines (CSV, JSON, API, RDBMS) into Azure Blob Storage and automated daily data loads into Snowflake. Optimized schemas for RFM analytics to maximize marketing campaign ROI. </p>
                         </div>
                         <div class="flex flex-wrap gap-2 text-xs font-bold text-slate-300 mt-4 border-t border-slate-700 pt-6">
                             <span class="bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-700 transition-colors group-hover:border-blue-500/50">Snowflake</span>
@@ -321,18 +341,17 @@
                     </div>
                 </div>
 
-                <div data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.2" data-aos="zoom-in-up" data-aos-delay="100" class="bg-slate-800 rounded-2xl overflow-hidden shadow-2xl hover:shadow-[0_0_40px_rgba(59,130,246,0.25)] transition-shadow duration-500 group flex flex-col border border-slate-700 hover:border-blue-500 cursor-pointer">
+                <div data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.2" data-aos="zoom-in-up" data-aos-delay="100" class="bg-slate-800 rounded-2xl overflow-hidden shadow-2xl hover:shadow-[0_0_40px_rgba(59,130,246,0.25)] transition-shadow duration-500 group flex flex-col border border-slate-700 hover:border-blue-500 cursor-pointer relative">
                     <div class="h-72 overflow-hidden relative">
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/30 to-transparent z-10"></div>
                         <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80" alt="Insurance Documents and Analysis" class="w-full h-full object-cover group-hover:scale-110 group-hover:rotate-1 transition-transform duration-700">
                         <div class="absolute bottom-5 left-8 z-20">
-                            <span class="bg-blue-600/90 backdrop-blur-md text-white text-xs font-bold px-4 py-2 rounded-full uppercase tracking-wider shadow-lg border border-blue-400/30">Finance</span>
-                        </div>
+                            <span class="bg-blue-600/90 backdrop-blur-md text-white text-xs font-bold px-4 py-2 rounded-full uppercase tracking-wider shadow-lg border border-blue-400/30">Finance</span> </div>
                     </div>
                     <div class="p-8 flex-1 flex flex-col relative z-20 bg-slate-800">
                         <div class="mb-auto">
-                            <h4 class="text-2xl font-bold mb-4 text-white group-hover:text-blue-400 transition-colors">Insurance Fraud Detection</h4>
-                            <p class="text-slate-400 mb-6 leading-relaxed">Designed an end-to-end fraud detection pipeline using Azure Databricks and PySpark. Ingested raw data into ADLS Gen2 and transformed it into Delta tables, improving data consistency by 25%.</p>
+                            <h4 class="text-2xl font-bold mb-4 text-white group-hover:text-blue-400 transition-colors">Insurance Fraud Detection </h4>
+                            <p class="text-slate-400 mb-6 leading-relaxed">Designed an end-to-end fraud detection pipeline using Azure Databricks and PySpark. Ingested raw data into ADLS Gen2 and transformed it into Delta tables, improving data consistency by 25%. </p>
                         </div>
                         <div class="flex flex-wrap gap-2 text-xs font-bold text-slate-300 mt-4 border-t border-slate-700 pt-6">
                             <span class="bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-700 transition-colors group-hover:border-blue-500/50">ADLS Gen2</span>
@@ -342,18 +361,17 @@
                     </div>
                 </div>
 
-                <div data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.2" data-aos="zoom-in-up" data-aos-delay="200" class="bg-slate-800 rounded-2xl overflow-hidden shadow-2xl hover:shadow-[0_0_40px_rgba(59,130,246,0.25)] transition-shadow duration-500 group flex flex-col border border-slate-700 hover:border-blue-500 cursor-pointer">
+                <div data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.2" data-aos="zoom-in-up" data-aos-delay="200" class="bg-slate-800 rounded-2xl overflow-hidden shadow-2xl hover:shadow-[0_0_40px_rgba(59,130,246,0.25)] transition-shadow duration-500 group flex flex-col border border-slate-700 hover:border-blue-500 cursor-pointer relative">
                     <div class="h-72 overflow-hidden relative">
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/30 to-transparent z-10"></div>
                         <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80" alt="Healthcare Data Platform" class="w-full h-full object-cover group-hover:scale-110 group-hover:-rotate-1 transition-transform duration-700">
                         <div class="absolute bottom-5 left-8 z-20">
-                            <span class="bg-blue-600/90 backdrop-blur-md text-white text-xs font-bold px-4 py-2 rounded-full uppercase tracking-wider shadow-lg border border-blue-400/30">Healthcare</span>
-                        </div>
+                            <span class="bg-blue-600/90 backdrop-blur-md text-white text-xs font-bold px-4 py-2 rounded-full uppercase tracking-wider shadow-lg border border-blue-400/30">Healthcare</span> </div>
                     </div>
                     <div class="p-8 flex-1 flex flex-col relative z-20 bg-slate-800">
                         <div class="mb-auto">
-                            <h4 class="text-2xl font-bold mb-4 text-white group-hover:text-blue-400 transition-colors">Healthcare Data Ingestion Platform</h4>
-                            <p class="text-slate-400 mb-6 leading-relaxed">Architected a metadata-driven ETL framework in ADF to ingest healthcare data into Snowflake. Implemented centralized auditing and alerting using Snowflake and Azure Logic Apps, enabling real-time monitoring.</p>
+                            <h4 class="text-2xl font-bold mb-4 text-white group-hover:text-blue-400 transition-colors">Healthcare Data Ingestion Platform </h4>
+                            <p class="text-slate-400 mb-6 leading-relaxed">Architected a metadata-driven ETL framework in ADF to ingest healthcare data into Snowflake. Implemented centralized auditing and alerting using Snowflake and Azure Logic Apps, enabling real-time monitoring. </p>
                         </div>
                         <div class="flex flex-wrap gap-2 text-xs font-bold text-slate-300 mt-4 border-t border-slate-700 pt-6">
                             <span class="bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-700 transition-colors group-hover:border-blue-500/50">ADF</span>
@@ -372,19 +390,19 @@
 
         <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-16 items-center relative z-10">
             <div data-aos="fade-right">
-                <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-6 tracking-tight">Let's Build Something <span class="text-blue-500">Great.</span></h2>
+                <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-6 tracking-tight text-moving-gradient inline-block pb-2">Let's Build Something Great.</h2>
                 <p class="text-slate-400 mb-10 max-w-md text-lg leading-relaxed">I am currently open for new opportunities. Whether you have a question or just want to say hi, I'll try my best to get back to you!</p>
                 <div class="space-y-6">
                     <a href="mailto:nakuldaf@gmail.com" class="inline-flex items-center gap-5 hover:text-blue-400 transition-all duration-300 group">
                         <div class="w-14 h-14 rounded-2xl bg-slate-800 border border-slate-700 flex items-center justify-center text-blue-500 group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-500 transition-all shadow-lg transform group-hover:scale-110">
-                            <i class="fas fa-envelope text-2xl"></i>
+                            <i class="fas fa-envelope text-2xl group-hover:animate-bounce"></i>
                         </div>
                         <span class="font-bold text-xl tracking-wide relative">nakuldaf@gmail.com<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-400 transition-all duration-300 group-hover:w-full"></span></span>
                     </a>
                     <br>
                     <a href="https://www.linkedin.com/in/nakul-daf/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3Br0Xd0e6JSqmkBuOKz0fvZg%3D%3D" target="_blank" class="inline-flex items-center gap-5 hover:text-blue-400 transition-all duration-300 group">
                         <div class="w-14 h-14 rounded-2xl bg-slate-800 border border-slate-700 flex items-center justify-center text-blue-500 group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-500 transition-all shadow-lg transform group-hover:scale-110">
-                            <i class="fab fa-linkedin-in text-2xl"></i>
+                            <i class="fab fa-linkedin-in text-2xl group-hover:rotate-[360deg] transition-transform duration-700"></i>
                         </div>
                         <span class="font-bold text-xl tracking-wide relative">linkedin.com/in/nakul-daf<span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-400 transition-all duration-300 group-hover:w-full"></span></span>
                     </a>
@@ -393,8 +411,8 @@
             <div class="md:text-right" data-aos="fade-left" data-aos-delay="200">
                 <h1 class="text-6xl font-black text-white mb-4 tracking-tight">Nakul <span class="text-blue-600">Daf</span></h1>
                 <p class="text-slate-500 uppercase tracking-widest text-sm font-bold mb-10">Data Engineer</p>
-                <a href="https://github.com/Nakul-Daf" target="_blank" class="inline-flex items-center gap-3 bg-white text-slate-900 px-8 py-4 rounded-xl font-bold transition-all duration-300 hover:bg-slate-200 hover:shadow-[0_0_30px_rgba(255,255,255,0.4)] transform hover:-translate-y-2 group">
-                    <i class="fab fa-github text-2xl group-hover:rotate-12 transition-transform"></i> View my GitHub
+                <a href="https://github.com/Nakul-Daf" target="_blank" class="btn-shimmer inline-flex items-center gap-3 bg-white text-slate-900 px-8 py-4 rounded-xl font-bold transition-all duration-300 hover:bg-slate-200 hover:shadow-[0_0_30px_rgba(255,255,255,0.4)] transform hover:-translate-y-2 group overflow-hidden">
+                    <i class="fab fa-github text-2xl group-hover:rotate-12 transition-transform relative z-10"></i> <span class="relative z-10">View my GitHub</span>
                 </a>
             </div>
         </div>
@@ -451,7 +469,6 @@
         let mouseX = 0, mouseY = 0;
         let glowX = 0, glowY = 0;
         
-        // Use requestAnimationFrame for smooth follower movement
         function animateGlow() {
             let distX = mouseX - glowX;
             let distY = mouseY - glowY;
