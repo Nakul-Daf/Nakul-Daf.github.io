@@ -97,6 +97,13 @@
             color: #2563eb;
             font-weight: 800;
         }
+        
+        /* Dynamic Navbar styling */
+        .nav-scrolled {
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+            background: rgba(255, 255, 255, 0.85);
+        }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-blue-300 overflow-x-hidden relative">
@@ -106,7 +113,7 @@
     <div class="mouse-glow hidden md:block" id="mouse-glow"></div>
 
     <nav class="glass shadow-sm sticky top-0 z-50 transition-all duration-300 border-b border-slate-100" id="navbar">
-        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center transition-all duration-300" id="nav-inner">
             <h1 class="text-2xl font-black tracking-tight text-slate-900" data-aos="fade-right" data-aos-duration="800">Nakul <span class="text-blue-600">Daf</span></h1>
             <div class="space-x-8 text-sm font-bold hidden md:flex">
                 <a href="#about" class="hover:text-blue-600 transition-colors duration-300 relative group" data-aos="fade-down" data-aos-delay="100">
@@ -301,7 +308,7 @@
             <div class="grid md:grid-cols-2 gap-12">
                 
                 <div data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.2" data-aos="zoom-in-up" data-aos-delay="100" class="bg-slate-800 rounded-2xl overflow-hidden shadow-2xl hover:shadow-[0_0_40px_rgba(59,130,246,0.25)] transition-shadow duration-500 group flex flex-col border border-slate-700 hover:border-blue-500 cursor-pointer relative">
-                    <div class="h-72 overflow-hidden relative">
+                    <div class="h-64 overflow-hidden relative">
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/30 to-transparent z-10"></div>
                         <img src="https://images.unsplash.com/photo-1540962351504-03099e0a754b?auto=format&fit=crop&w=800&q=80" alt="Private Jet Aviation" class="w-full h-full object-cover group-hover:scale-110 group-hover:rotate-1 transition-transform duration-700">
                         <div class="absolute bottom-5 left-8 z-20">
@@ -310,18 +317,24 @@
                     <div class="p-8 flex-1 flex flex-col relative z-20 bg-slate-800">
                         <div class="mb-auto">
                             <h4 class="text-2xl font-bold mb-4 text-white group-hover:text-blue-400 transition-colors">Aviation Data Platform </h4>
-                            <p class="text-slate-400 mb-6 leading-relaxed">Designed Azure Databricks pipelines using PySpark and Delta Lake to transform aviation data across Bronze-Silver layers for 20+ schemas with Unity Catalog governance. Automated job orchestration via Databricks Workflows and Apache Airflow. </p>
+                            <p class="text-slate-400 mb-6 leading-relaxed text-sm">Designed Azure Databricks pipelines using PySpark and Delta Lake to transform aviation data across Bronze-Silver layers for 20+ schemas with Unity Catalog governance. Automated job orchestration via Databricks Workflows and Apache Airflow. </p>
                         </div>
-                        <div class="flex flex-wrap gap-2 text-xs font-bold text-slate-300 mt-4 border-t border-slate-700 pt-6">
+                        <div class="flex flex-wrap gap-2 text-xs font-bold text-slate-300 mt-2">
                             <span class="bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-700 transition-colors group-hover:border-blue-500/50">Databricks</span>
                             <span class="bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-700 transition-colors group-hover:border-blue-500/50">PySpark</span>
                             <span class="bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-700 transition-colors group-hover:border-blue-500/50">Unity Catalog</span>
+                        </div>
+                        
+                        <div class="mt-8 pt-6 border-t border-slate-700/50 relative z-30">
+                            <a href="https://github.com/Nakul-Daf/aviation-data-platform" target="_blank" class="inline-flex items-center gap-2 text-sm font-bold text-blue-400 hover:text-blue-300 transition-colors group/link">
+                                View Case Study <i class="fas fa-arrow-right transform group-hover/link:translate-x-1 transition-transform"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
 
                 <div data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.2" data-aos="zoom-in-up" data-aos-delay="200" class="bg-slate-800 rounded-2xl overflow-hidden shadow-2xl hover:shadow-[0_0_40px_rgba(59,130,246,0.25)] transition-shadow duration-500 group flex flex-col border border-slate-700 hover:border-blue-500 cursor-pointer relative">
-                    <div class="h-72 overflow-hidden relative">
+                    <div class="h-64 overflow-hidden relative">
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/30 to-transparent z-10"></div>
                         <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" alt="Data Analytics Dashboard" class="w-full h-full object-cover group-hover:scale-110 group-hover:-rotate-1 transition-transform duration-700">
                         <div class="absolute bottom-5 left-8 z-20">
@@ -331,18 +344,24 @@
                     <div class="p-8 flex-1 flex flex-col relative z-20 bg-slate-800">
                         <div class="mb-auto">
                             <h4 class="text-2xl font-bold mb-4 text-white group-hover:text-blue-400 transition-colors">RFM Analytics for E-commerce </h4>
-                            <p class="text-slate-400 mb-6 leading-relaxed">Delivered multi-format ingestion pipelines (CSV, JSON, API, RDBMS) into Azure Blob Storage and automated daily data loads into Snowflake. Optimized schemas for RFM analytics to maximize marketing campaign ROI. </p>
+                            <p class="text-slate-400 mb-6 leading-relaxed text-sm">Delivered multi-format ingestion pipelines (CSV, JSON, API, RDBMS) into Azure Blob Storage and automated daily data loads into Snowflake. Optimized schemas for RFM analytics to maximize marketing campaign ROI. </p>
                         </div>
-                        <div class="flex flex-wrap gap-2 text-xs font-bold text-slate-300 mt-4 border-t border-slate-700 pt-6">
+                        <div class="flex flex-wrap gap-2 text-xs font-bold text-slate-300 mt-2">
                             <span class="bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-700 transition-colors group-hover:border-blue-500/50">Snowflake</span>
                             <span class="bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-700 transition-colors group-hover:border-blue-500/50">Azure Blob</span>
                             <span class="bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-700 transition-colors group-hover:border-blue-500/50">ETL</span>
+                        </div>
+                        
+                        <div class="mt-8 pt-6 border-t border-slate-700/50 relative z-30">
+                            <a href="https://github.com/Nakul-Daf/ecommerce-rfm-analytics" target="_blank" class="inline-flex items-center gap-2 text-sm font-bold text-blue-400 hover:text-blue-300 transition-colors group/link">
+                                View Case Study <i class="fas fa-arrow-right transform group-hover/link:translate-x-1 transition-transform"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
 
                 <div data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.2" data-aos="zoom-in-up" data-aos-delay="100" class="bg-slate-800 rounded-2xl overflow-hidden shadow-2xl hover:shadow-[0_0_40px_rgba(59,130,246,0.25)] transition-shadow duration-500 group flex flex-col border border-slate-700 hover:border-blue-500 cursor-pointer relative">
-                    <div class="h-72 overflow-hidden relative">
+                    <div class="h-64 overflow-hidden relative">
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/30 to-transparent z-10"></div>
                         <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80" alt="Insurance Documents and Analysis" class="w-full h-full object-cover group-hover:scale-110 group-hover:rotate-1 transition-transform duration-700">
                         <div class="absolute bottom-5 left-8 z-20">
@@ -351,18 +370,24 @@
                     <div class="p-8 flex-1 flex flex-col relative z-20 bg-slate-800">
                         <div class="mb-auto">
                             <h4 class="text-2xl font-bold mb-4 text-white group-hover:text-blue-400 transition-colors">Insurance Fraud Detection </h4>
-                            <p class="text-slate-400 mb-6 leading-relaxed">Designed an end-to-end fraud detection pipeline using Azure Databricks and PySpark. Ingested raw data into ADLS Gen2 and transformed it into Delta tables, improving data consistency by 25%. </p>
+                            <p class="text-slate-400 mb-6 leading-relaxed text-sm">Designed an end-to-end fraud detection pipeline using Azure Databricks and PySpark. Ingested raw data into ADLS Gen2 and transformed it into Delta tables, improving data consistency by 25%. </p>
                         </div>
-                        <div class="flex flex-wrap gap-2 text-xs font-bold text-slate-300 mt-4 border-t border-slate-700 pt-6">
+                        <div class="flex flex-wrap gap-2 text-xs font-bold text-slate-300 mt-2">
                             <span class="bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-700 transition-colors group-hover:border-blue-500/50">ADLS Gen2</span>
                             <span class="bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-700 transition-colors group-hover:border-blue-500/50">PySpark</span>
                             <span class="bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-700 transition-colors group-hover:border-blue-500/50">Databricks</span>
+                        </div>
+                        
+                        <div class="mt-8 pt-6 border-t border-slate-700/50 relative z-30">
+                            <a href="https://github.com/Nakul-Daf/insurance-fraud-detection" target="_blank" class="inline-flex items-center gap-2 text-sm font-bold text-blue-400 hover:text-blue-300 transition-colors group/link">
+                                View Case Study <i class="fas fa-arrow-right transform group-hover/link:translate-x-1 transition-transform"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
 
                 <div data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.2" data-aos="zoom-in-up" data-aos-delay="200" class="bg-slate-800 rounded-2xl overflow-hidden shadow-2xl hover:shadow-[0_0_40px_rgba(59,130,246,0.25)] transition-shadow duration-500 group flex flex-col border border-slate-700 hover:border-blue-500 cursor-pointer relative">
-                    <div class="h-72 overflow-hidden relative">
+                    <div class="h-64 overflow-hidden relative">
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/30 to-transparent z-10"></div>
                         <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80" alt="Healthcare Data Platform" class="w-full h-full object-cover group-hover:scale-110 group-hover:-rotate-1 transition-transform duration-700">
                         <div class="absolute bottom-5 left-8 z-20">
@@ -371,12 +396,18 @@
                     <div class="p-8 flex-1 flex flex-col relative z-20 bg-slate-800">
                         <div class="mb-auto">
                             <h4 class="text-2xl font-bold mb-4 text-white group-hover:text-blue-400 transition-colors">Healthcare Data Ingestion Platform </h4>
-                            <p class="text-slate-400 mb-6 leading-relaxed">Architected a metadata-driven ETL framework in ADF to ingest healthcare data into Snowflake. Implemented centralized auditing and alerting using Snowflake and Azure Logic Apps, enabling real-time monitoring. </p>
+                            <p class="text-slate-400 mb-6 leading-relaxed text-sm">Architected a metadata-driven ETL framework in ADF to ingest healthcare data into Snowflake. Implemented centralized auditing and alerting using Snowflake and Azure Logic Apps, enabling real-time monitoring. </p>
                         </div>
-                        <div class="flex flex-wrap gap-2 text-xs font-bold text-slate-300 mt-4 border-t border-slate-700 pt-6">
+                        <div class="flex flex-wrap gap-2 text-xs font-bold text-slate-300 mt-2">
                             <span class="bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-700 transition-colors group-hover:border-blue-500/50">ADF</span>
                             <span class="bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-700 transition-colors group-hover:border-blue-500/50">Azure Logic Apps</span>
                             <span class="bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-700 transition-colors group-hover:border-blue-500/50">SQL Server</span>
+                        </div>
+                        
+                        <div class="mt-8 pt-6 border-t border-slate-700/50 relative z-30">
+                            <a href="https://github.com/Nakul-Daf/healthcare-data-ingestion" target="_blank" class="inline-flex items-center gap-2 text-sm font-bold text-blue-400 hover:text-blue-300 transition-colors group/link">
+                                View Case Study <i class="fas fa-arrow-right transform group-hover/link:translate-x-1 transition-transform"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -447,14 +478,19 @@
 
         // 3. Navbar & Scroll Progress Bar Logic
         window.addEventListener('scroll', () => {
-            // Navbar Glass Effect
+            // Dynamic Navbar
             const navbar = document.getElementById('navbar');
+            const navInner = document.getElementById('nav-inner');
             if (window.scrollY > 20) {
-                navbar.classList.add('shadow-md', 'bg-white/90', 'border-slate-100');
+                navbar.classList.add('shadow-md', 'bg-white/95', 'border-slate-200');
                 navbar.classList.remove('bg-transparent', 'border-transparent');
+                navInner.classList.add('py-2');
+                navInner.classList.remove('py-4');
             } else {
-                navbar.classList.remove('shadow-md', 'bg-white/90', 'border-slate-100');
+                navbar.classList.remove('shadow-md', 'bg-white/95', 'border-slate-200');
                 navbar.classList.add('bg-transparent', 'border-transparent');
+                navInner.classList.add('py-4');
+                navInner.classList.remove('py-2');
             }
 
             // Scroll Progress Bar
