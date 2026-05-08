@@ -148,7 +148,9 @@
                 <div class="min-h-[160px] md:min-h-[180px] flex flex-col justify-center">
                     <h2 class="text-5xl md:text-7xl font-extrabold leading-tight text-slate-900 tracking-tight">
                         Architecting scalable <br>
-                        <span id="typed-text" class="text-moving-gradient drop-shadow-sm inline-block mt-2"></span>
+                        <span class="block mt-2">
+                            <span id="typed-text" class="text-moving-gradient drop-shadow-sm"></span>
+                        </span>
                     </h2>
                 </div>
 
@@ -167,7 +169,7 @@
             <div class="flex-1 flex justify-center relative" data-aos="zoom-in" data-aos-duration="1200">
                 <div class="absolute inset-0 bg-blue-400/20 rounded-full blur-[80px] transform scale-110 -z-10 animate-pulse"></div>
                 <div data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.3" class="rounded-full rounded-full w-80 h-80 md:w-96 md:h-96 transform-style-3d cursor-pointer">
-                    <img src="images/Media%20(3).jpg" alt="Nakul Daf" class="rounded-full w-full h-full object-cover border-[10px] border-white shadow-2xl animate-float relative z-10">
+                    <img src="images/Media%20(3).png" alt="Nakul Daf" class="rounded-full w-full h-full object-cover border-[10px] border-white shadow-2xl animate-float relative z-10">
                 </div>
                 <div class="absolute top-8 right-8 bg-white p-4 rounded-2xl shadow-xl animate-float-delayed z-20 text-blue-500 text-3xl border border-slate-100 pointer-events-none">
                     <i class="fas fa-cloud"></i>
@@ -501,7 +503,6 @@
 
         // 3. Navbar & Scroll Progress Bar Logic
         window.addEventListener('scroll', () => {
-            // Dynamic Navbar
             const navbar = document.getElementById('navbar');
             const navInner = document.getElementById('nav-inner');
             if (window.scrollY > 20) {
@@ -516,7 +517,6 @@
                 navInner.classList.remove('py-2');
             }
 
-            // Scroll Progress Bar
             const scrollPx = document.documentElement.scrollTop;
             const winHeightPx = document.documentElement.scrollHeight - document.documentElement.clientHeight;
             const scrolled = (scrollPx / winHeightPx) * 100;
